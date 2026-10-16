@@ -27,6 +27,18 @@ jobs:
           unzip -q /tmp/gradle.zip -d "$HOME/.gradle-dist"
           echo "$HOME/.gradle-dist/gradle-9.3.1/bin" >> "$GITHUB_PATH"
 
+      - name: Create debug keystore
+        run: |
+          keytool -genkeypair \
+            -alias androiddebugkey \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 10000 \
+            -keystore debug.keystore \
+            -storepass android \
+            -keypass android \
+            -dname "CN=Android Debug,O=Android,C=US"
+
       - name: Verify build tools
         run: |
           java -version
