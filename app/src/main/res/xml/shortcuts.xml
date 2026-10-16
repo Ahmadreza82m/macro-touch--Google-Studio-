@@ -5,7 +5,7 @@
         android:enabled="true"
         android:icon="@drawable/ic_launcher_foreground"
         android:shortcutShortLabel="@string/app_name"
-        android:shortcutLongLabel="شروع سریع آخرین ماکرو">
+        android:shortcutLongLabel="@string/shortcut_start_macro_long_label">
         <intent
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.example"
