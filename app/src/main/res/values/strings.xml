@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Macro Touch Pro</string>
     <string name="signature_creator">Crafted by Ahmadreza © 2026</string>
+    <string name="shortcut_start_macro_long_label">شروع سریع آخرین ماکرو</string>
     <string name="engine_status_idle">آماده به‌کار (Idle)</string>
     <string name="engine_status_running">در حال اجرا (Running)</string>
     <string name="engine_status_paused">مکث (Paused)</string>
