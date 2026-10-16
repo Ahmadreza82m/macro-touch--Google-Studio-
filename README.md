@@ -1,11 +1,56 @@
-<div align="center">
+# Macro Touch Pro (نسخه ۲.۰)
+> اتوماسیون لمسی پیشرفته و دکمه‌های شناور اندروید با سرویس دسترسی‌پذیری و سبک Dark Premium مشکی-طلایی
+> **Crafted by Ahmadreza © 2026**
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+---
 
-  <h1>Built with AI Studio</h2>
+## ۱. خلاصه‌ی محصول و معماری
+- **نام اپلیکیشن:** Macro Touch Pro
+- **زبان و فریمورک:** Kotlin + Jetpack Compose (Material 3 سفارشی)
+- **پایگاه داده محلی:** Room Database با موجودیت‌های UUID پایدار، کلیدهای خارجی cascade و سطل بازیافت (Soft Delete)
+- **موتور اجرا:** `MacroEngine` با ماشین حالت ۵ مرحله‌ای (Idle, Running, Paused, Stopping, Error)، جبران drift زمان‌بندی با `SystemClock.elapsedRealtime` و لغو مطمئن از طریق Generation Token.
+- **سرویس‌ها:**
+  - `TouchAutomationService`: سرویس AccessibilityService فقط برای ارسال ژست با `dispatchGesture` بدون خواندن محتوای صفحه.
+  - `FloatingOverlayService`: سرویس پیش‌زمینه (Foreground Service) برای ترسیم دکمه‌های شناور مستقل از طریق `WindowManager`.
+- **بدون اینترنت:** بدون مجوز `INTERNET`، بدون ابزار AI یا کلید API در کدهای اجرایی، ۱۰۰٪ آفلاین و محلی.
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+---
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## ۲. راهنمای گام‌به‌گام ساخت APK روی گوشی اندروید (بدون نیاز به کامپیوتر)
 
-</div>
+از آنجا که شما فقط یک گوشی اندروید دارید، ساخت APK از طریق **GitHub Actions** به صورت خودکار انجام می‌شود:
+
+### روش ۱: ساخت خودکار APK با GitHub (ساده‌ترین روش - فقط با مرورگر یا اپ GitHub)
+1. کدهای این پروژه را در یک مخزن (Repository) جدید در اکانت GitHub خود قرار دهید (پوش یا آپلود).
+2. فایل گردش‌کار `.github/workflows/build-apk.yml` از قبل در پروژه قرار داده شده است.
+3. با هر بار Push یا رفتن به تب **Actions** در گیت‌هاب و زدن دکمه‌ی **Run workflow**:
+   - سرور ابری گیت‌هاب پروژه را با جاوا ۱۷ و گریدل کامپایل می‌کند.
+   - پس از ۲ الی ۳ دقیقه، فایل `MacroTouchPro-Debug-APK.zip` در بخش **Artifacts** همان اجرا آماده دانلود است.
+4. فایل ZIP را دانلود کرده، آن را Extract کنید و فایل `app-debug.apk` را مستقیماً روی گوشی خود نصب نمایید!
+
+### روش ۲: بیلد یا پوش از طریق Termux روی گوشی اندروید
+اگر از اپلیکیشن Termux روی گوشی خود استفاده می‌کنید:
+```bash
+# ۱. به‌روزرسانی پکیج‌ها و نصب git و openjdk
+pkg update && pkg install git openjdk-17 -y
+
+# ۲. رفتن به پوشه پروژه
+cd MacroTouchPro
+
+# ۳. دادن مجوز اجرا به اسکریپت gradlew
+chmod +x gradlew
+
+# ۴. بیلد محلی APK دیباگ (در صورت داشتن حافظه و منابع کافی در Termux)
+./gradlew assembleDebug
+
+# مسیر فایل خروجی APK:
+# app/build/outputs/apk/debug/app-debug.apk
+```
+
+---
+
+## ۳. قواعد شفافیت و محدودیت‌های فنی واقعی
+1. **تأخیر ذاتی ژست‌ها:** تابع `dispatchGesture` در سیستم‌عامل اندروید دارای تأخیر ذاتی وابسته به درایور تاچ و پردازنده دستگاه است. هیچ ادعای غیرواقعی مانند «zero-lag» وجود ندارد.
+2. **رفتار دکمه Stop:** فشردن دکمه توقف (Stop)، فوراً تمام چرخه‌ها و مراحل بعدی را لغو می‌کند؛ اما قطعه ژست کوتاهی که قبلاً به فریمورک اندروید ارسال شده است، توسط خود اندروید تا پایان زمانش اجرا می‌شود.
+3. **هشدار ضدتقلب بازی‌ها:** برخی بازی‌های آنلاین دارای مکانیزم شناسایی اتوماسیون لمسی هستند و ممکن است حساب کاربری را محدود کنند. این برنامه هیچ وعده‌ای درباره نتیجه بازی‌ها (مانند هدشات یا پیروزی قطعی) نمی‌دهد.
+4. **تنظیمات محدود شده (Android 13+ Restricted Settings):** در صورت خاکستری بودن کلید سرویس دسترسی‌پذیری در تنظیمات گوشی، باید به App Info > سه نقطه بالا > Allow restricted settings بروید.

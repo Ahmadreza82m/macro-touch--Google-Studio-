@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Macro Touch Pro</string>
+    <string name="signature_creator">Crafted by Ahmadreza © 2026</string>
+    <string name="engine_status_idle">آماده به‌کار (Idle)</string>
+    <string name="engine_status_running">در حال اجرا (Running)</string>
+    <string name="engine_status_paused">مکث (Paused)</string>
+    <string name="engine_status_stopping">در حال توقف (Stopping)</string>
+    <string name="engine_status_error">خطای اجرا (Error)</string>
+    <string name="service_accessibility_title">سرویس دسترسی‌پذیری لمسی</string>
+    <string name="service_accessibility_desc">برای اجرای لمس، کشیدن و نگه‌داشتن روی صفحه نیاز است. هیچ محتوای متنی یا اطلاعات شخصی خوانده نمی‌شود.</string>
+    <string name="service_overlay_title">مجوز پنجره شناور</string>
+    <string name="service_overlay_desc">برای نمایش دکمه‌های کنترل و ژست‌ها روی سایر برنامه‌ها نیاز است.</string>
+    <string name="anticheat_warning_title">هشدار ایمنی و ضدتقلب</string>
+    <string name="anticheat_warning_desc">برخی از بازی‌ها دارای سیستم ضدتقلب بوده و ممکن است اتوماسیون لمسی را محدود یا اکانت را مسدود کنند. این برنامه هیچ نتیجه قطعی مانند هدشات یا پیروزی را تضمین نمی‌کند.</string>
+</resources>

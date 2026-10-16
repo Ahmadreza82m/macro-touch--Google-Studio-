@@ -1,0 +1,6 @@
+{
+  "name": "Macro Touch Pro",
+  "description": "اتوماسیون لمسی پیشرفته و شناور اندروید با سرویس دسترسی‌پذیری و سبک Dark Premium مشکی-طلایی",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
